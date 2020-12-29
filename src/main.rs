@@ -18,6 +18,7 @@ fn main() -> Result<(), Box<dyn error::Error>> {
         // 1つのクライアントとやりとりを行う専用のスレッドを用意することで、
         // サーバはクライアントの接続要求と、接続済みクライアントとのメッセージを複数扱うことができます。
         thread::spawn(move || { handler(stream).unwrap(); }); // ストリームのハンドリング
+        // クロージャ + handler()の引数streamの所有権を借用ではなくmoveさせる
     }
 }
 
